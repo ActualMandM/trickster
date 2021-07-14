@@ -435,8 +435,8 @@ class PlayState extends MusicBeatState
 				camPos.x += 400;
 			case 'trickyH':
 				camPos.set(dad.getGraphicMidpoint().x, dad.getGraphicMidpoint().y + 500);
-				dad.y -= 2000;
-				dad.x -= 1400;
+				dad.y -= 1040;
+				dad.x -= 780;
 				gf.x -= 380;
 			case 'exTricky':
 				dad.x -= 250;
@@ -473,9 +473,6 @@ class PlayState extends MusicBeatState
 
 		if (curStage == 'auditorHell')
 			add(hole);
-
-		if (dad.curCharacter == 'trickyH')
-			dad.addOtherFrames();
 		
 		add(dad);
 
