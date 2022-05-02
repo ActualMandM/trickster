@@ -445,7 +445,7 @@ class TitleState extends MusicBeatState
 				createCoolText(['Newgrounds']);
 				backupMen.visible = false;
 			case 16:
-				addMoreText('is pog');
+				addMoreText('is sexy');
 				actualNG.visible = true;
 			case 17:
 				actualNG.visible = false;
@@ -484,9 +484,9 @@ class TitleState extends MusicBeatState
 				addMoreText('by Tsuraran');
 			case 30:
 				deleteCoolText();
-				createCoolText(['the drop']);
+				createCoolText(['the op']);
 			case 31:
-				addMoreText('or smth lol');
+				addMoreText('op');
 			case 32:
 				deleteCoolText();
 				skipIntro();
