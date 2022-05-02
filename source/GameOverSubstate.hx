@@ -7,6 +7,8 @@ import flixel.math.FlxPoint;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 
+using StringTools;
+
 class GameOverSubstate extends MusicBeatSubstate
 {
 	var bf:Boyfriend;
@@ -16,8 +18,16 @@ class GameOverSubstate extends MusicBeatSubstate
 
 	public function new(x:Float, y:Float)
 	{
-		var daStage = PlayState.curStage;
+		var daSong = PlayState.SONG.song.toLowerCase();
 		var daBf:String = 'signDeath';
+
+		switch (daSong)
+		{
+			case 'madness':
+				daBf = 'signDeath_pit';
+			case 'expurgation':
+				daBf = 'signDeath_octagon';
+		}
 
 		super();
 
