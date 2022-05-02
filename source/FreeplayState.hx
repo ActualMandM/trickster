@@ -112,6 +112,9 @@ class FreeplayState extends MusicBeatState
 	{
 		if (songs[selectedIndex].pognt == 'expurgation')
 			return "UNFAIR";
+		else
+			return "HARD";
+		/*
 		switch (diff)
 		{
 			case 0:
@@ -122,6 +125,7 @@ class FreeplayState extends MusicBeatState
 				return "HARD";
 		}
 		return "what";
+		*/
 	}
 
 	function selectSong()
@@ -134,13 +138,13 @@ class FreeplayState extends MusicBeatState
 			if (MusicMenu.Vocals.playing)
 				MusicMenu.Vocals.stop();
 
-		if (songs[selectedIndex].pognt == 'expurgation')
-		{
+		// if (songs[selectedIndex].pognt == 'expurgation')
+		// {
 			PlayState.storyDifficulty = 2;
 			diffToUse = 2;
-		}
-		else
-			PlayState.storyDifficulty = diff;
+		// }
+		// else
+			// PlayState.storyDifficulty = diff;
 
 		var poop:String = Highscore.formatSong(songs[selectedIndex].pognt.toLowerCase(), diffToUse);
 

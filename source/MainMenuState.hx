@@ -36,7 +36,7 @@ class MainMenuState extends MusicBeatState
 		new TrickyButton(800, 160, 'menu/Clown Mode Button', 'menu/Clown Mode Button CONFIRM', playStory,'clown', 0, -40),
 		new TrickyButton(1010, 165, 'menu/FreePlayButton', 'menu/FreePlayButton CONFIRM', goToFreeplay, "free", 0, -40),
 		new TrickyButton(925, 265, 'menu/MUSIC Button', 'menu/MUSIC button confirm', goToMusic),
-		new TrickyButton(685, 330, 'menu/DIFFICULTY', 'menu/DIFFICULTY CONFIRM', startDiffSelect),
+		// new TrickyButton(685, 330, 'menu/DIFFICULTY', 'menu/DIFFICULTY CONFIRM', startDiffSelect),
 		new TrickyButton(975, 460, 'menu/OPTIONS Button', 'menu/OPTIONS Button CONFIRM', goToOptions, "options", 0, 45)
 	];
 
@@ -278,16 +278,16 @@ class MainMenuState extends MusicBeatState
 		var liners:FlxSprite = new FlxSprite(600, 390).loadGraphic(Paths.image("menu/Liners","clown"));
 		liners.setGraphicSize(Std.int(liners.width * 0.7));
 		liners.antialiasing = true;
-		add(liners);
+		// add(liners);
 
 		for (i in listOfDiffButtons)
 			{
 				// just general compensation since pasc made this on 1920x1080 and we're on 1280x720
 				i.spriteOne.setGraphicSize(Std.int(i.spriteOne.width * 0.7));
 				i.spriteTwo.setGraphicSize(Std.int(i.spriteTwo.width * 0.7));
-				add(i);
-				add(i.spriteOne);
-				add(i.spriteTwo);
+				// add(i);
+				// add(i.spriteOne);
+				// add(i.spriteTwo);
 			}
 	
 
