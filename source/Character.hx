@@ -338,6 +338,42 @@ class Character extends FlxSprite
 				updateHitbox();
 				antialiasing = false;
 				flipX = true;
+
+			case 'pitDeath':
+				frames = Paths.getSparrowAtlas('signDeath_pit', 'clown');
+				animation.addByPrefix('firstDeath', 'BF dies', 24, false);
+				animation.addByPrefix('deathLoop', 'BF Dead Loop', 24, false);
+				animation.addByPrefix('deathConfirm', 'BF Dead confirm', 24, false);
+
+				playAnim('firstDeath');
+
+				addOffset('firstDeath');
+				addOffset('deathLoop');
+				addOffset('deathConfirm', 0, 40);
+
+				animation.pause();
+
+				updateHitbox();
+				antialiasing = false;
+				flipX = true;
+
+			case 'octagonDeath':
+				frames = Paths.getSparrowAtlas('signDeath_octagon', 'clown');
+				animation.addByPrefix('firstDeath', 'BF dies', 24, false);
+				animation.addByPrefix('deathLoop', 'BF Dead Loop', 24, false);
+				animation.addByPrefix('deathConfirm', 'BF Dead confirm', 24, false);
+
+				playAnim('firstDeath');
+
+				addOffset('firstDeath');
+				addOffset('deathLoop');
+				addOffset('deathConfirm', 0, 40);
+
+				animation.pause();
+
+				updateHitbox();
+				antialiasing = false;
+				flipX = true;
 			
 			case 'exTricky':
 				frames = Paths.getSparrowAtlas('fourth/EXTRICKY','clown');

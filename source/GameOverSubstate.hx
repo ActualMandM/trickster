@@ -24,9 +24,9 @@ class GameOverSubstate extends MusicBeatSubstate
 		switch (daSong)
 		{
 			case 'madness':
-				daBf = 'signDeath_pit';
+				daBf = 'pitDeath';
 			case 'expurgation':
-				daBf = 'signDeath_octagon';
+				daBf = 'octagonDeath';
 		}
 
 		super();
