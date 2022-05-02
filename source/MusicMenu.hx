@@ -376,7 +376,7 @@ class MusicMenu extends MusicBeatState
         {
             if (Vocals.playing)
             {
-                if (FlxG.sound.music.time > Vocals.time + 20 || FlxG.sound.music.time < Vocals.time - 20)
+				if (Math.abs(FlxG.sound.music.time - Vocals.time) > 20)
                     resyncVocals();
 
                 circleOne.angle += 1;

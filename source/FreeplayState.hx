@@ -33,6 +33,14 @@ class FreeplayState extends MusicBeatState
 	override function create() {
 
 		trace(diff);
+
+		if (!FlxG.sound.music.playing)
+		{
+			MainMenuState.reRoll = false;
+			MainMenuState.show = 'bf';
+			FlxG.sound.playMusic(Paths.music("nexus_bf", "clown"), 0);
+			FlxG.sound.music.fadeIn(4, 0, 0.7);
+		}
 	
 		#if debug
 		debug = true;

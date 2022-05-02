@@ -17,7 +17,7 @@ class MainMenuState extends MusicBeatState
 {
 	var slider:FlxBackdrop;
 	public static var killed:Bool = false;
-	var show:String = "";
+	public static var show:String = "";
 	var hand:FlxSprite;
 	var shower:FlxSprite;
 	public static var curDifficulty:Int = 2;
