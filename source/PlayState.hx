@@ -2025,6 +2025,13 @@ class PlayState extends MusicBeatState
 				// FlxG.watch.addQuick('Queued',inputsQueued);
 			}
 
+		// RESET = Quick Game Over Screen
+		if (controls.RESET && !startingSong)
+		{
+			health = 0;
+			trace("RESET = True");
+		}
+
 		if (health <= 0)
 		{
 			boyfriend.stunned = true;
@@ -2917,8 +2924,8 @@ class PlayState extends MusicBeatState
 						{
 							if (!note.isSustainNote)
 							{
-								popUpScore(note);
 								combo += 1;
+								popUpScore(note);
 							}
 							else
 								totalNotesHit += 1;
@@ -2979,7 +2986,8 @@ class PlayState extends MusicBeatState
 	override function stepHit()
 	{
 		super.stepHit();
-		if (FlxG.sound.music.time > Conductor.songPosition + 20 || FlxG.sound.music.time < Conductor.songPosition - 20)
+		if ((Math.abs(FlxG.sound.music.time - (Conductor.songPosition - Conductor.offset)) > 20)
+			|| (SONG.needsVoices && Math.abs(vocals.time - (Conductor.songPosition - Conductor.offset)) > 20))
 		{
 			resyncVocals();
 		}
