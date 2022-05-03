@@ -14,6 +14,13 @@ class HealthIcon extends FlxSprite
 		super();
 		switch(char)
 		{
+			case 'bf-hollow' | 'tricky-hollow':
+				loadGraphic(Paths.image('IconGridHollow', 'hollow'), true, 150, 150);
+
+				antialiasing = true;
+				animation.add('bf-hollow', [0, 1], 0, false, isPlayer);
+				animation.add('tricky-hollow', [2, 3], 0, false, isPlayer);
+
 			case 'trickyMask' | 'tricky':
 				loadGraphic(Paths.image('IconGridTricky','clown'), true, 150, 150);
 

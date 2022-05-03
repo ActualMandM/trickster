@@ -50,7 +50,7 @@ class PlayState extends MusicBeatState
 	public static var isStoryMode:Bool = false;
 	public static var storyWeek:Int = 0;
 	public static var storyPlaylist:Array<String> = [];
-	public static var storyDifficulty:Int = 1;
+	public static var storyDifficulty:Int = 2;
 	public static var weekSong:Int = 0;
 	public static var shits:Int = 0;
 	public static var bads:Int = 0;
@@ -223,7 +223,7 @@ class PlayState extends MusicBeatState
 				TrickyLinesSing = CoolUtil.coolTextFile(Paths.txt('trickySpartaSingStrings'));
 		}
 
-		if (SONG.song.toLowerCase() == 'improbable-outset' || SONG.song.toLowerCase() == 'madness')
+		if (SONG.song.toLowerCase() == 'improbable-outset' || SONG.song.toLowerCase() == 'madness' || SONG.song.toLowerCase() == 'madness-(ost-version)')
 		{
 			//trace("line 538");
 			defaultCamZoom = 0.75;
@@ -249,7 +249,12 @@ class PlayState extends MusicBeatState
 				stageFront = new FlxSprite(-1100, -460).loadGraphic(Paths.image('island_but_dumb','clown'));
 			}
 			else
-				stageFront = new FlxSprite(-1100, -460).loadGraphic(Paths.image('island_but_rocks_float','clown'));
+			{
+				if (SONG.song.toLowerCase() == 'madness-(ost-version)')
+					stageFront = new FlxSprite(-1100, -460).loadGraphic(Paths.image('island_but_rocks_float','hollow'));
+				else
+					stageFront = new FlxSprite(-1100, -460).loadGraphic(Paths.image('island_but_rocks_float','clown'));
+			}
 
 			stageFront.setGraphicSize(Std.int(stageFront.width * 1.4));
 			stageFront.antialiasing = true;
@@ -387,6 +392,11 @@ class PlayState extends MusicBeatState
 				gfVersion = 'gf-hell';
 			case 'auditorHell':
 				gfVersion = 'gf-tied';
+		}
+
+		if (SONG.song.toLowerCase() == 'madness-(ost-version)')
+		{
+			gfVersion = 'gf-hollow';
 		}
 
 		gf = new Character(400, 130, gfVersion);
@@ -630,16 +640,19 @@ class PlayState extends MusicBeatState
 		// cameras = [FlxG.cameras.list[1]];
 		startingSong = true;
 
-		if (curStage == "nevada" || curStage == "nevadaSpook" || curStage == 'auditorHell')
-			add(tstatic);
-
-		if (curStage == 'auditorHell')
-			tstatic.alpha = 0.1;
-
-		if (curStage == 'nevadaSpook' || curStage == 'auditorHell')
+		if (SONG.song.toLowerCase() != 'madness-(ost-version)')
 		{
-			tstatic.setGraphicSize(Std.int(tstatic.width * 12));
-			tstatic.x += 600;
+			if (curStage == "nevada" || curStage == "nevadaSpook" || curStage == 'auditorHell')
+				add(tstatic);
+	
+			if (curStage == 'auditorHell')
+				tstatic.alpha = 0.1;
+	
+			if (curStage == 'nevadaSpook' || curStage == 'auditorHell')
+			{
+				tstatic.setGraphicSize(Std.int(tstatic.width * 12));
+				tstatic.x += 600;
+			}
 		}
 
 
@@ -2060,7 +2073,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 		// this is where I overuse FlxG.Random :)
-		if (spookyRendered) // move shit around all spooky like
+		if (spookyRendered && SONG.song.toLowerCase() != 'madness-(ost-version)') // move shit around all spooky like
 			{
 				spookyText.angle = FlxG.random.int(-5,5); // change its angle between -5 and 5 so it starts shaking violently.
 				//tstatic.x = tstatic.x + FlxG.random.int(-2,2); // move it back and fourth to repersent shaking.
@@ -2210,20 +2223,23 @@ class PlayState extends MusicBeatState
 
 	function createSpookyText(text:String, x:Float = -1111111111111, y:Float = -1111111111111):Void
 	{
-		spookySteps = curStep;
-		spookyRendered = true;
-		tstatic.alpha = 0.5;
-		FlxG.sound.play(Paths.sound('staticSound','clown'));
-		spookyText = new FlxText((x == -1111111111111 ? FlxG.random.float(dad.x + 40,dad.x + 120) : x), (y == -1111111111111 ? FlxG.random.float(dad.y + 200, dad.y + 300) : y));
-		spookyText.setFormat("Impact", 128, FlxColor.RED);
-		if (curStage == 'nevedaSpook')
+		if (SONG.song.toLowerCase() != 'madness-(ost-version)')
 		{
-			spookyText.size = 200;
-			spookyText.x += 250;
+			spookySteps = curStep;
+			spookyRendered = true;
+			tstatic.alpha = 0.5;
+			FlxG.sound.play(Paths.sound('staticSound','clown'));
+			spookyText = new FlxText((x == -1111111111111 ? FlxG.random.float(dad.x + 40,dad.x + 120) : x), (y == -1111111111111 ? FlxG.random.float(dad.y + 200, dad.y + 300) : y));
+			spookyText.setFormat("Impact", 128, FlxColor.RED);
+			if (curStage == 'nevedaSpook')
+			{
+				spookyText.size = 200;
+				spookyText.x += 250;
+			}
+			spookyText.bold = true;
+			spookyText.text = text;
+			add(spookyText);
 		}
-		spookyText.bold = true;
-		spookyText.text = text;
-		add(spookyText);
 	}
 
 	public function endSong():Void
@@ -2966,19 +2982,25 @@ class PlayState extends MusicBeatState
 
 	function resetSpookyTextManual():Void
 	{
-		trace('reset spooky');
-		spookySteps = curStep;
-		spookyRendered = true;
-		tstatic.alpha = 0.5;
-		FlxG.sound.play(Paths.sound('staticSound','clown'));
-		resetSpookyText = true;
+		if (SONG.song.toLowerCase() != 'madness-(ost-version)')
+		{
+			trace('reset spooky');
+			spookySteps = curStep;
+			spookyRendered = true;
+			tstatic.alpha = 0.5;
+			FlxG.sound.play(Paths.sound('staticSound','clown'));
+			resetSpookyText = true;
+		}
 	}
 
 	function manuallymanuallyresetspookytextmanual()
 	{
-		remove(spookyText);
-		spookyRendered = false;
-		tstatic.alpha = 0;
+		if (SONG.song.toLowerCase() != 'madness-(ost-version)')
+		{
+			remove(spookyText);
+			spookyRendered = false;
+			tstatic.alpha = 0;
+		}
 	}
 
 	var stepOfLast = 0;

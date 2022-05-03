@@ -27,6 +27,8 @@ class GameOverSubstate extends MusicBeatSubstate
 				daBf = 'pitDeath';
 			case 'expurgation':
 				daBf = 'octagonDeath';
+			case 'madness-(ost-version)':
+				daBf = 'hollowDeath';
 		}
 
 		super();
@@ -39,8 +41,14 @@ class GameOverSubstate extends MusicBeatSubstate
 		camFollow = new FlxObject(bf.getGraphicMidpoint().x, bf.getGraphicMidpoint().y, 1, 1);
 		add(camFollow);
 
-		FlxG.sound.play(Paths.sound('BF_Deathsound','clown'));
-		FlxG.sound.play(Paths.sound('Micdrop','clown'));
+		if (daBf == 'hollowDeath')
+			FlxG.sound.play(Paths.sound('Hollow_Deathsound','hollow'));
+		else
+		{
+			FlxG.sound.play(Paths.sound('BF_Deathsound','clown'));
+			FlxG.sound.play(Paths.sound('Micdrop','clown'));
+		}
+
 		Conductor.changeBPM(200);
 
 		// FlxG.camera.followLerp = 1;

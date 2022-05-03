@@ -138,7 +138,11 @@ class Note extends FlxSprite
 					}
 					else
 					{
-						frames = Paths.getSparrowAtlas('NOTE_fire', "clown");
+						if (PlayState.SONG.song.toLowerCase() == 'madness-(ost-version)')
+							frames = Paths.getSparrowAtlas('NOTE_fire', "hollow");
+						else
+							frames = Paths.getSparrowAtlas('NOTE_fire', "clown");
+
 						if(!FlxG.save.data.downscroll){
 							animation.addByPrefix('blueScroll', 'blue fire');
 							animation.addByPrefix('greenScroll', 'green fire');
